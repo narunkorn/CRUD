@@ -47,7 +47,7 @@ export default function EditUser() {
 
     const fetchEditData = async () => {
         try {
-            let res = await fetch('  https://www.mecallapi.com/api/users/' + id)
+            let res = await fetch(`${process.env.REACT_APP_CALL_API}/api/users/` + id)
             let mydata = await res.json()
             setFname(mydata.user.fname);
             setLname(mydata.user.lname);
@@ -72,7 +72,7 @@ export default function EditUser() {
             'email': email,
             'avatar': avatar
         }
-        let res = await fetch('https://www.mecallapi.com/api/users/update', {
+        let res = await fetch(`${process.env.REACT_APP_CALL_API}/api/users/update`, {
             method: 'PUT',
             body: JSON.stringify(dataUpdate),
             headers: { "content-type": "application/json" }

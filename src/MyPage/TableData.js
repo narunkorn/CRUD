@@ -24,9 +24,10 @@ const TableData = () => {
 
     const fetchData = async () => {
         try {
-            let res = await fetch(' https://www.mecallapi.com/api/users');
+            let res = await fetch(`${process.env.REACT_APP_CALL_API}/api/users`);
             let myData = await res.json()
             setDatas(myData);
+            
             console.log(myData);
         } catch (err) {
             console.log(err);
@@ -35,7 +36,7 @@ const TableData = () => {
     useEffect(() => {
         fetchData();
     }, []);
-
+    
     const filterInputSerch = datas.filter((data) => {
         return data.fname.toLowerCase().includes(serch.toLowerCase());
     })
@@ -43,7 +44,7 @@ const TableData = () => {
         const datasDelete = {
             'id': id,
         }
-        let res = await fetch('https://www.mecallapi.com/api/users/delete', {
+        let res = await fetch(`${process.env.REACT_APP_CALL_API}/api/users/delete`, {
             method: 'DELETE',
             body: JSON.stringify(datasDelete),
             headers: { "content-type": "application/json" }

@@ -49,7 +49,7 @@ export default function CreateUser() {
             'email': email,
             'avatar': avatar
         }
-        let res = await fetch('https://www.mecallapi.com/api/users/create', {
+        let res = await fetch(`${process.env.REACT_APP_CALL_API}/api/users/create`, {
             method: 'POST',
             body: JSON.stringify(datasCreate),
             headers: { "content-type": "application/json" }
@@ -143,7 +143,17 @@ export default function CreateUser() {
                         color="primary"
                         className={classes.submit}
                     >
-                        Sign Up
+                        create
+                    </Button>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        onClick={()=> history.push('/page')}
+                    >
+                       cancle
                     </Button>
 
                 </form>
