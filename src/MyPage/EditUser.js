@@ -49,19 +49,21 @@ export default function EditUser() {
         try {
             let res = await fetch(`${process.env.REACT_APP_CALL_API}/api/users/` + id)
             let mydata = await res.json()
-            setFname(mydata.user.fname);
-            setLname(mydata.user.lname);
-            setUsername(mydata.user.username);
-            setEmail(mydata.user.email);
-            setAvatar(mydata.user.avatar);
+            console.log('data',mydata.user)
+            dispatch(setFname(mydata.user.fname)) ;
+           dispatch(setLname(mydata.user.lname)) ;
+           dispatch(setUsername(mydata.user.username)) ;
+           dispatch(setEmail(mydata.user.email)) ;
+           dispatch(setAvatar(mydata.user.avatar)) ;
         } catch (err) {
             console.log(err);
         }
 
     }
+   
     useEffect(() => {
         fetchEditData();
-    });
+    },[]);
 
     const userUpdate = async () => {
         const dataUpdate = {
